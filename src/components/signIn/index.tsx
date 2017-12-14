@@ -10,7 +10,8 @@ const styles = require('./index.scss')
 
 interface Props {
     history: History,
-    signInFrom: SignInFrom
+    signInFrom: SignInFrom,
+
     changeSignInFrom: ChangeSignInFromAction,
 }
 
@@ -19,6 +20,8 @@ class Signin extends React.Component<Props, {}> {
     public render() {
         return (
             <Paper styleName="sign-box" zDepth={2}>
+                <div><img src={require('./logo.png')} alt=""/></div>
+                <h1 styleName="title">思沃学院考试系统</h1>
                 <TextField
                     hintText="Type your user name"
                     floatingLabelText="User Name"
@@ -51,6 +54,7 @@ class Signin extends React.Component<Props, {}> {
     }
 
     private signIn = () => {
+        //TODO: validate  api
         this.props.history.push('/home')
     }
 }

@@ -1,5 +1,11 @@
 .sign-box {
-  margin: 0 auto;
-  padding: 0 20px 20px 20px;
+  padding: 40px 50px;
   width: 450px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.title{
+  text-align: center;
 }
