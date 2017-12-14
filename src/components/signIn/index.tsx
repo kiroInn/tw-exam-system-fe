@@ -20,7 +20,6 @@ class Signin extends React.Component<Props, {}> {
     public render() {
         return (
             <Paper styleName="sign-box" zDepth={2}>
-                <div><img src={require('./logo.png')} alt=""/></div>
                 <h1 styleName="title">思沃学院考试系统</h1>
                 <TextField
                     hintText="Type your user name"
