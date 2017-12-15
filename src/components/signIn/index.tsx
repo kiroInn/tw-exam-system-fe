@@ -25,6 +25,7 @@ class Signin extends React.Component<Props, {}> {
                     hintText="Type your user name"
                     floatingLabelText="User Name"
                     fullWidth={true}
+                    value={this.props.signInFrom.username}
                     onChange={this.changeInputFrom.bind(this, 'username')}
                 />
                 <TextField
@@ -32,6 +33,7 @@ class Signin extends React.Component<Props, {}> {
                     floatingLabelText="Password"
                     fullWidth={true}
                     type="password"
+                    value={this.props.signInFrom.password}
                     onChange={this.changeInputFrom.bind(this, 'password')}
                 />
                 <RaisedButton
@@ -49,12 +51,27 @@ class Signin extends React.Component<Props, {}> {
                                event: React.ChangeEvent<HTMLInputElement>) => {
         let fields = {}
         fields[field] = event.target.value
-        this.props.changeSignInFrom(fields)
+        console.log(this.props.changeSignInFrom(fields))
     }
 
     private signIn = () => {
         //TODO: validate  api
-        this.props.history.push('/home')
+        let username = this.props.signInFrom.username
+        let password = this.props.signInFrom.password
+        fetch('http://10.206.124.80:8082/api/login_exam', {
+            method: 'POST',
+            headers: new Headers(),
+            body: {
+                username, password
+            }
+        }).then((response) => {
+            console.log(response)
+            if (response.status === 200) {
+                this.props.history.push('/home');
+            } else {
+                alert(response.body);
+            }
+        })
     }
 }
 
