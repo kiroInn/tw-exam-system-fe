@@ -51,11 +51,10 @@ class Signin extends React.Component<Props, {}> {
                                event: React.ChangeEvent<HTMLInputElement>) => {
         let fields = {}
         fields[field] = event.target.value
-        console.log(this.props.changeSignInFrom(fields))
+        this.props.changeSignInFrom(fields)
     }
 
     private signIn = () => {
-        //TODO: validate  api
         let username = this.props.signInFrom.username
         let password = this.props.signInFrom.password
         fetch('http://10.206.124.80:8082/api/login_exam', {
@@ -65,11 +64,14 @@ class Signin extends React.Component<Props, {}> {
                 username, password
             }
         }).then((response) => {
-            console.log(response)
             if (response.status === 200) {
                 this.props.history.push('/home');
             } else {
-                alert(response.body);
+                if(response.body && response.body['msg']){
+                    alert(response.body)
+                }else{
+                    alert('系统内部错误')
+                }
             }
         })
     }
